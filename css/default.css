@@ -1,0 +1,364 @@
+@charset "utf-8";
+/*
+date : 2012-2
+
++ Text
++ List
++ Anchor
++ Table
++ Form
++ Others
+*/
+/*----------------------------------------
+	font-size
+------------------------------------------
+Font-size list (base: 13px)
+ 62% =  8px
+ 70% =  9px
+ 77% = 10px
+ 85% = 11px        162% = 21px        239% = 31px
+ 93% = 12px        170% = 22px        247% = 32px
+100% = 13px        177% = 23px        254% = 33px
+108% = 14px        185% = 24px        262% = 34px
+116% = 15px        193% = 25px        270% = 35px
+124% = 16px        200% = 26px        277% = 36px
+131% = 17px        208% = 27px        285% = 37px
+139% = 18px        216% = 28px        293% = 38px
+147% = 19px        224% = 29px        300% = 39px
+154% = 20px        231% = 30px        308% = 40px
+*/
+/* Don't Edit */
+body {
+	font: 13px/1.231 arial, helvetica, clean, sans-serif;
+	*font-size: small;
+	*font: x-small;
+}
+
+table {
+	font-size: inherit;
+	font: 100%;
+}
+
+pre,
+code,
+kbd,
+samp,
+tt {
+	font-family: monospace;
+	*font-size: 108%;
+	line-height: 100%;
+}
+
+html > body {
+	font-size/*\**/: small\9;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	font-size: 100%;
+	font-weight: normal;
+	font-style: normal;
+	font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", Osaka, "ＭＳ Ｐゴシック", "MS PGothic", Sans-Serif;
+}
+
+body {
+	line-height: 1.6;
+	text-align: center;
+	background-color: #fff;
+}
+
+/*----------------------------------------
+	HTML5
+----------------------------------------*/
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+	display: block;
+}
+
+/*----------------------------------------
+	Text
+----------------------------------------*/
+p,
+pre,
+address {
+	color: #333333;
+	font-size: 100%;
+}
+
+h1 {
+	font-size: 139%;
+}
+
+h2 {
+	font-size: 124%;
+}
+
+h3 {
+	font-size: 108%;
+}
+
+h4 {
+	font-size: 100%;
+}
+
+h5 {
+	font-size: 93%;
+}
+
+h6 {
+	font-size: 85%;
+}
+
+pre {
+	margin: 1.5em 25px;
+	padding: 1em;
+	overflow: scroll;
+	font-family: "ＭＳ-Ｐ ゴシック" , Osaka, Arial, Helvetica, sans-serif;
+	line-height: 1.9;
+}
+
+blockquote {
+	margin: 1.5em 1px;
+	border: 5px solid #9f998f;
+	color: #77471c;
+	background-color: #f5f5f5;
+	background-repeat: repeat-x;
+	background-position: left bottom;
+}
+
+blockquote[title]::before {
+	padding: 0.2em 10px 0.4em 10px;
+	content: attr(title);
+	display: block;
+	color: #fff;
+	background-color: #9f998f;
+	font-weight: bold;
+}
+
+blockquote[cite]::after {
+	margin: 0.5em 10px;
+	content: attr(cite);
+	display: block;
+	text-align: right;
+	font-size: 85%;
+}
+
+blockquote * {
+	color: #333 !important;
+}
+
+em {
+	color: #000;
+}
+
+pre em {
+	font-weight: bold;
+	background-image: none;
+}
+
+strong {
+	font-weight: bold;
+}
+
+q {
+	text-decoration: underline;
+}
+
+cite {
+	display: block;
+	text-align: right;
+}
+
+kbd {
+	background-color: #f5f5f5;
+	font-family: "Osaka|", monospace;
+	text-transform: uppercase;
+	padding: 0 0.4em;
+	border: 1px solid #6a8eaa;
+}
+
+del {
+	text-decoration: line-through;
+}
+
+ins {
+	border-top: 10px solid #3cadd6;
+	border-bottom: 10px solid #3cadd6;
+	border: 7px solid #3cadd6;
+	margin: 2em 1px;
+	padding: 1px 0;
+	display: block;
+	text-decoration: none;
+}
+
+ins * {
+	color: #666 !important;
+}
+
+abbr,
+acronym {
+	border-bottom: 1px dotted #aaa;
+	cursor: help;
+}
+
+/*----------------------------------------
+	List
+----------------------------------------*/
+ul,
+ol,
+dl {
+	color: #333;
+}
+
+li,
+dt,
+dd {
+	font-size: 100%;
+	list-style-type: none;
+	list-style-position: outside;
+}
+
+ol li {
+	list-style: decimal;
+}
+
+/* Opera Hack */
+html:first-child li,
+html:first-child dt,
+html:first-child dd {
+	font-size: 1em;
+}
+
+dt {
+	font-weight: bold;
+}
+
+li li,
+li p,
+li pre,
+li dt,
+li dd,
+dd li,
+dd p,
+dd pre,
+dd dt,
+dd dd {
+	font-size: 100% !important;
+}
+
+/*----------------------------------------
+	Anchor
+----------------------------------------*/
+a {
+	color: #0066ff;
+}
+
+a:hover {
+	color: #3399ff;
+}
+
+a:hover {
+	color: blue;
+}
+
+a:hover {
+	color: #00faaa;
+}
+
+/*----------------------------------------
+	Table
+----------------------------------------*/
+table {
+	margin: 1em 20px;
+	border: 1px solid #aaa;
+	background-color: #eee;
+}
+
+caption {
+	display: none;
+}
+
+th,
+td {
+	padding: 0.1em 5px;
+	font-size: 100%;
+}
+
+th {
+	color: #ffffff;
+	background-color: #ccc;
+}
+
+td {
+	border: 1px solid #ddd;
+	background-color: #ffffff;
+}
+
+/*----------------------------------------
+	Form
+----------------------------------------*/
+form {
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+fieldset,
+legend {
+	border: none;
+}
+
+legend {
+	display: none;
+}
+
+input,
+textarea {
+	padding: 0.2em;
+	border: 1px solid #d1d1d1;
+	background-color: #fff;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+input {
+	line-height: 1.2;
+}
+
+input:hover,
+textarea:hover {
+	border: 1px solid #a5d2da;
+}
+
+input:focus,
+textarea:focus {
+	border: 1px solid #069;
+	background-color: #fff;
+}
+
+input.button {
+	padding: 0;
+	border: none;
+	background-image: none;
+	vertical-align: top;
+}
+
+/*----------------------------------------
+	Others
+----------------------------------------*/
+img {
+	border: none;
+	vertical-align: bottom;
+}
+
+hr {
+	border: none;
+	border-top: 1px dotted #ccc;
+}

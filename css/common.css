@@ -1,0 +1,234 @@
+@charset "utf-8";
+body {
+	background: url(../images/bg.gif) repeat center top;
+}
+
+header,
+div#content,
+footer {
+	margin: 0 auto;
+	text-align: left;
+}
+
+ul#nav {
+	margin-top: -37px;
+	position: fixed;
+	_position: absolute;
+	top: 50%;
+	right: 25px;
+	z-index: 16;
+}
+
+ul#nav li {
+	margin-bottom: 13px;
+}
+
+ul#nav li a {
+	display: block;
+	width: 16px;
+	height: 0;
+	padding-top: 16px;
+	overflow: hidden;
+	background-color: rgba(0, 0, 0, 0.5);
+	*background-color: black;
+	border: 2px solid #fff;
+	-webkit-border-radius: 11px;
+	-moz-border-radius: 11px;
+	-o-border-radius: 11px;
+	-ms-border-radius: 11px;
+	border-radius: 11px;
+}
+
+ul#nav li.on a {
+	background-color: rgba(255, 0, 40, 0.5);
+	*background-color: #39c;
+}
+
+ul#nav li:nth-child(2).on a {
+	background-color: rgba(100, 255, 100, 0.5);
+	*background-color: #c39;
+}
+
+ul#nav li:nth-child(3).on a {
+	background-color: rgba(250, 100, 0, 0.5);
+	*background-color: #936;
+}
+
+/*----------------------------------------
+	header
+----------------------------------------*/
+header {
+	position: relative;
+	max-width: 1200px;
+	height: 750px;
+}
+
+header h1 {
+	text-align: center;
+	vertical-align: middle;
+	position: relative;
+	top: 350px;
+	z-index: 10;
+	height: 750px;
+	font-size: 308%;
+	letter-spacing: 8px;
+	color: #a9d6e3;
+	text-shadow: 1px 1px 2px white,1px 1px 2px white,1px 1px 2px white,1px 1px 2px white,1px 1px 2px white,1px 1px 2px white,1px 1px 2px white,1px 1px 2px white;
+	font-family: 'Chango', cursive;
+}
+
+header li {
+	position: absolute;
+}
+
+header .maru01 {
+	width: 1043px;
+	height: 806px;
+	left: 70px;
+	top: -78px;
+	z-index: 7;
+}
+
+header .maru02 {
+	width: 782px;
+	height: 709px;
+	left: 311px;
+	top: -41px;
+	z-index: 6;
+}
+
+header .maru03 {
+	width: 959px;
+	height: 746px;
+	left: -35px;
+	top: 8px;
+	z-index: 5;
+}
+
+header .maru04 {
+	width: 1160px;
+	height: 554px;
+	left: 2px;
+	top: 69px;
+	z-index: 4;
+}
+
+header .maru05 {
+	width: 950px;
+	height: 754px;
+	left: 0px;
+	top: 177px;
+	z-index: 3;
+}
+
+/*----------------------------------------
+	content
+----------------------------------------*/
+div#content {
+	position: relative;
+	z-index: 15;
+}
+
+section#first {
+	height: 700px;
+	background: url(../images/photo.jpg) no-repeat center top;
+}
+
+section#first p {
+	padding-top: 300px;
+	text-align: center;
+	font-size: 231%;
+	color: #fff;
+	text-shadow: 0 0 8px black;
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+	opacity: 0;
+	letter-spacing: 3px;
+	position: relative;
+}
+
+section#second {
+	margin: 0 auto;
+	max-width: 1200px;
+	height: 450px;
+	position: relative;
+	overflow: hidden;
+}
+
+section#second * {
+	font-style: italic;
+	font-weight: bold;
+	color: #59b8d4;
+	line-height: 1;
+}
+
+section#second h2 {
+	margin-bottom: 10px;
+	font-size: 254%;
+	position: absolute;
+	top: 100px;
+	left: 20px;
+	text-shadow: 1px 1px 2px white,1px 1px 2px white,1px 1px 2px white,1px 1px 2px white,1px 1px 2px white,1px 1px 2px white,1px 1px 2px white,1px 1px 2px white;
+	z-index: 3;
+	font-family: 'Chango', cursive;
+}
+
+section#second p {
+	font-size: 193%;
+	position: absolute;
+	top: 190px;
+	left: 20px;
+	text-shadow: 1px 1px 2px white,1px 1px 2px white,1px 1px 2px white,1px 1px 2px white,1px 1px 2px white,1px 1px 2px white,1px 1px 2px white,1px 1px 2px white;
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+section#second p img {
+	position: relative;
+	opacity: 0;
+}
+
+section#second p em {
+	font-size: 120%;
+	font-family: 'Josefin Sans', sans-serif;
+}
+
+section#second * p {
+	top: auto;
+	left: auto;
+}
+
+section#second div.photo {
+	position: absolute;
+	top: 30px;
+	left: 40%;
+}
+
+section#second p[class^="photo"] {
+	position: absolute;
+	filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+}
+
+section#second p.photo01 {
+	top: 0;
+	left: 278px;
+	z-index: 1;
+}
+
+section#second p.photo02 {
+	top: 77px;
+}
+
+/*----------------------------------------
+	clearfix
+----------------------------------------*/
+.clearfix {
+	min-height: 1px;
+	_height: 1%;
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	height: 0;
+	visibility: hidden;
+}

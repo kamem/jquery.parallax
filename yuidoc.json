@@ -1,0 +1,7 @@
+{
+    "name": "jQuery parallax",
+    "description": "parallaxを実装するためのjQuery Plugin",
+    "options": {
+        "outdir": "yuidoc/"
+    }
+}
