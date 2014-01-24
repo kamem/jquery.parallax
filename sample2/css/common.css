@@ -1,0 +1,157 @@
+@charset "utf-8";
+html {
+	background-color: #000;
+}
+
+body {
+	width: 2600px;
+	background: url(../images/bg03.jpg) repeat-x 700px top black;
+}
+
+ul#nav {
+	margin-left: -37px;
+	position: fixed;
+	_position: absolute;
+	left: 50%;
+	top: 660px;
+	z-index: 16;
+}
+
+ul#nav li {
+	margin-left: 13px;
+	float: left;
+	display: inline;
+}
+
+ul#nav li a {
+	display: block;
+	width: 16px;
+	height: 0;
+	padding-top: 16px;
+	overflow: hidden;
+	background-color: rgba(255, 255, 255, 0.5);
+	*background-color: white;
+	border: 2px solid #fff;
+	-webkit-border-radius: 11px;
+	-moz-border-radius: 11px;
+	-o-border-radius: 11px;
+	-ms-border-radius: 11px;
+	border-radius: 11px;
+}
+
+ul#nav li.on a {
+	background-color: rgba(255, 0, 40, 0.5);
+	*background-color: #39c;
+}
+
+ul#nav li:nth-child(2).on a {
+	background-color: rgba(100, 255, 100, 0.5);
+	*background-color: #c39;
+}
+
+ul#nav li:nth-child(3).on a {
+	background-color: rgba(250, 100, 0, 0.5);
+	*background-color: #936;
+}
+
+p.mask {
+	position: fixed;
+	_position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 11;
+}
+
+/*----------------------------------------
+	header
+----------------------------------------*/
+header {
+	margin-right: -300px;
+	width: 1064px;
+	height: 700px;
+	float: left;
+	display: inline;
+	background: url(../images/bg01.png) no-repeat left top;
+	position: relative;
+	z-index: 10;
+}
+
+header h1 {
+	padding-top: 300px;
+	color: #fff;
+	font-size: 308%;
+	font-family: "ＭＳ Ｐ明朝", "ヒラギノ明朝 Pro W3", "平成明朝",serif;
+	letter-spacing: 15px;
+	text-shadow: 0 0 15px #993333,0 0 15px #993333,0 0 15px #993333,0 0 15px #993333,0 0 15px #993333,0 0 15px #993333,0 0 15px #993333,0 0 15px #993333;
+}
+
+/*----------------------------------------
+	content
+----------------------------------------*/
+div#content {
+	height: 700px;
+	overflow: hidden;
+}
+
+section#first {
+	width: 900px;
+	height: 700px;
+	position: relative;
+	float: left;
+}
+
+section#first h2 {
+	padding-top: 300px;
+	color: #fff;
+	font-size: 185%;
+	font-family: "ＭＳ Ｐ明朝", "ヒラギノ明朝 Pro W3", "平成明朝",serif;
+	letter-spacing: 10px;
+	text-indent: 300px;
+}
+
+section#first p[class^="star"] {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+section#second {
+	float: left;
+	width: 936px;
+	_width: 800px;
+	height: 700px;
+}
+
+section#second p.photo {
+	margin-top: 150px;
+	position: relative;
+}
+
+section#second p.scrolled {
+	margin-top: 10px;
+	color: #fff;
+	font-size: 154%;
+	line-height: 1.2;
+	font-family: "ＭＳ Ｐ明朝", "ヒラギノ明朝 Pro W3", "平成明朝",serif;
+}
+
+section#second p.scrolled em {
+	font-size: 150%;
+	font-family: "ＭＳ Ｐ明朝", "ヒラギノ明朝 Pro W3", "平成明朝",serif;
+}
+
+/*----------------------------------------
+	clearfix
+----------------------------------------*/
+.clearfix {
+	min-height: 1px;
+	_height: 1%;
+}
+
+.clearfix:after {
+	content: ".";
+	display: block;
+	clear: both;
+	height: 0;
+	visibility: hidden;
+}

@@ -137,8 +137,8 @@ $(function(){
 		parallaxObj['photo2'].tagMotions = {};
 		
 		parallaxObj['photo1'].tagMotions.motion1 = [{
-			startY : $('body').height() - $(window).height() - 300,
-			endY : $('body').height() - $(window).height(),
+			start : $('body').height() - $(window).height() - 300,
+			end : $('body').height() - $(window).height(),
 			fromStyle : {
 				opacity : 0,
 				top : -100
@@ -150,8 +150,8 @@ $(function(){
 			easing : 'easeOutBounce'
 		}];
 		parallaxObj['photo2'].tagMotions.motion1 = [{
-			startY : $('body').height() - $(window).height() - 300,
-			endY : $('body').height() - $(window).height(),
+			start : $('body').height() - $(window).height() - 300,
+			end : $('body').height() - $(window).height(),
 			fromStyle : {
 				opacity : 0,
 				top : 100
