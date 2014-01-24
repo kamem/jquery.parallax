@@ -8,13 +8,9 @@ parallaxを実装するためのjQuery Plugin
 ------
 3つのタイプでparallaxサイトを実装できる
 
-1. startYのendYの位置までの距離をfromStyleからtoStyleまでのstyleでeasingにそって実行する。
+1. startのendの位置までの距離をfromStyleからtoStyleまでのstyleでeasingにそって実行する。
 2. styleをスクロール量 / speedででコンテンツを動かす。
 3. 指定した位置を通過したときに関数を実行する。
-
-今後の課題
-------
-1. 現状y方向のスクロールにしか対応していないのでx方向のスクロールにも対応する。
 
 使い方
 ------
@@ -26,8 +22,10 @@ parallaxを実装するためのjQuery Plugin
 
  * parallax : {} - /typeによってそれに合わせた内容を指定
 
+ *	direction : y or x スクロールの方向を指定
+ 
  * type : 'type1' parallaxのタイプの設定
-	* type1 - startYのendYの位置までの距離をfromStyleからtoStyleまでのstyleでeasingにそって実行する。
+	* type1 - startのendの位置までの距離をfromStyleからtoStyleまでのstyleでeasingにそって実行する。
 	* type2 - styleをスクロール量 / speedででコンテンツを動かす。
 	* type3 - 指定した位置を通過したときに関数を実行する。
  
@@ -48,6 +46,8 @@ parallaxを実装するためのjQuery Plugin
 ### 初期設定 ###
 
 	parallax : {},
+			
+	direction : 'y',
 
 	// parallax Type
 	type : 'type1',
@@ -78,8 +78,8 @@ typeに合わせたparallaxの指定
 			obj : $('#header'), // 動かすオブジェクト
 			tagMotions : {
 				motion1 : [{
-					startY : 1000 // 動きのスタートのスクロール位置,
-					endY : 1500 // 動きの終わりスクロール位置,
+					start : 1000 // 動きのスタートのスクロール位置,
+					end : 1500 // 動きの終わりスクロール位置,
 					fromStyle : {
 						left : {Number}
 					},
@@ -89,8 +89,8 @@ typeに合わせたparallaxの指定
 					easing : 'easeInOutElastic' // イージングの指定
 				},
 				{
-					startY : 1300 //動きのスタートのスクロール位置,
-					endY : 1500 //動きの終わりスクロール位置,
+					start : 1300 //動きのスタートのスクロール位置,
+					end : 1500 //動きの終わりスクロール位置,
 					fromStyle : {
 						opacity : 1
 					},
@@ -101,7 +101,7 @@ typeに合わせたparallaxの指定
 				}],
 				motion2 : [{
 					//モーションいくつでも指定可能
-					//（ただしmotion1で指定している一番大きいendYより、motion2のstartYは大きくなるようにしてください。）
+					//（ただしmotion1で指定している一番大きいendより、motion2のstartは大きくなるようにしてください。）
 					....
 				}]
 			};
@@ -130,8 +130,8 @@ typeに合わせたparallaxの指定
 
 
 ### type3 ###
-//基準のポジション（$(hoge).offset().top）のタグ（$(hoge)）を指定
-//もしくはstartAnimation、endAnimationの引数targetに指定したいタグ
+基準のポジション（$(hoge).offset().top）のタグ（$(hoge)）を指定
+もしくはstartAnimation、endAnimationの引数targetに指定したいタグ
 
 	例）
 	$(window).parallax({
@@ -147,7 +147,7 @@ typeに合わせたparallaxの指定
 
 ライセンス
 ----------
-+ Copyright 2009 &copy; kamem
++ Copyright 2013 &copy; kamem
 + [http://www.opensource.org/licenses/mit-license.php][mit]
 
 [develo.org]: http://develo.org/ "develo.org"

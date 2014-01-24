@@ -7,10 +7,12 @@
  *	* http://develo.org/
  *	* Licensed Under the MIT.
  *	
- *	Date: 2013.12.29
+ *	Date: 2014.01.25
+ *
+ *	* direction : y or x スクロールの方向を指定
  *	
  *	* type : 'type1' parallaxのタイプの設定
- *		* type1 - startYのendYの位置までの距離をfromStyleからtoStyleまでのstyleでeasingにそって実行する。
+ *		* type1 - startのendの位置までの距離をfromStyleからtoStyleまでのstyleでeasingにそって実行する。
  *		* type2 - styleをスクロール量 / speedででコンテンツを動かす。
  *		* type3 - 指定した位置を通過したときに関数を実行する。
  *
@@ -40,6 +42,8 @@ $.fn.parallax = function(options) {
 		c = $.extend({
 			parallax : {},
 			
+			direction : 'y',
+			
 			//parallax Type
 			type : 'type1',
 
@@ -58,6 +62,10 @@ $.fn.parallax = function(options) {
 		},options),
 
 		parallaxObj = c.parallax,
+		
+		direction = c.direction,
+		directionStr = direction === 'y' ? 'top' : 'left',
+		
 		type = c.type,
 		
 		style = c.style,
@@ -119,16 +127,21 @@ $.fn.parallax = function(options) {
 	 *	@return {Object}
 	 */
 	function info() {
+		var dstr = directionStr.charAt(0).toUpperCase() + directionStr.substring(1),
+			scrollNum = $content['scroll' + dstr](),
+			windowWidth = (!(window.innerWidth)) ? document.documentElement.clientWidth : window.innerWidth,
+			windowHeight = (!(window.innerHeight)) ?  document.documentElement.clientHeight : window.innerHeight;
+
 		return {
-			scrollY: $content.scrollTop(),
-			windowWidth: (!(window.innerWidth)) ? document.documentElement.clientWidth : window.innerWidth,
-			windowHeight: (!(window.innerHeight)) ?  document.documentElement.clientHeight : window.innerHeight,
-			contentStartLine:  scrollY + ((!(window.innerHeight)) ?  document.documentElement.clientHeight : window.innerHeight / (100 / contentStartLinePercent))
-		}
-	}
+			scrollNum: scrollNum,
+			windowWidth: windowWidth,
+			windowHeight: windowHeight,
+			contentStartLine:  scrollNum + ((direction === 'y' ? windowHeight : windowWidth) / (100 / contentStartLinePercent))
+		};
+	};
 	
 	/**
-	 *	motionの中の配列のendY（モーションの終わり）の値が一番高いものを返す
+	 *	motionの中の配列のend（モーションの終わり）の値が一番高いものを返す
 	 *	@method numMax
 	 *	@param {Array} モーションの配列
 	 *	@return {Number} 配列の中で一番、多い数字
@@ -136,10 +149,10 @@ $.fn.parallax = function(options) {
 	function numMax(ary) {
 		var numArray = [];
 		for(var i = 0; i < ary.length ;i++) {
-			numArray[i] = ary[i].endY;
-		}
+			numArray[i] = ary[i].end;
+		};
 		return Math.max.apply(null, numArray)
-	}
+	};
 	
 	/**
 	 *	スクロール幅によって選択されたモーション名を返します。
@@ -148,25 +161,25 @@ $.fn.parallax = function(options) {
 	 *	@return {String} モーション名
 	 */
 	function motionSelect() {
-		var scrollY = info().scrollY,
-			endYArray = [],
+		var scrollNum = info().scrollNum,
+			endArray = [],
 
 		i = 0;
 		for(motion in parallaxObj[obj].tagMotions) {
-			endYArray[i] = numMax(parallaxObj[obj].tagMotions[motion]);
+			endArray[i] = numMax(parallaxObj[obj].tagMotions[motion]);
 			i++;
-		}
+		};
 
-		for(var i = 0; i <  endYArray.length ;i++) {
-			select = scrollY < endYArray[i] ? parallaxObj[obj].tagMotions['motion' + (i + 1)] : parallaxObj[obj].tagMotions['motion' + (endYArray.length)];
+		for(var i = 0; i <  endArray.length ;i++) {
+			select = scrollNum < endArray[i] ? parallaxObj[obj].tagMotions['motion' + (i + 1)] : parallaxObj[obj].tagMotions['motion' + (endArray.length)];
 			
-			if(scrollY < endYArray[i]) {
+			if(scrollNum < endArray[i]) {
 				break;
-			}
-		}
+			};
+		};
 		
 		return select;
-	}
+	};
 
 	/*------------------------------------------------------------------------------------------
 		パララックス効果のメイン処理
@@ -181,8 +194,8 @@ $.fn.parallax = function(options) {
 				obj : $('#header'), // 動かすオブジェクト
 				tagMotions : {
 					motion1 : [{
-						startY : 1000 // 動きのスタートのスクロール位置,
-						endY : 1500 // 動きの終わりスクロール位置,
+						start : 1000 // 動きのスタートのスクロール位置,
+						end : 1500 // 動きの終わりスクロール位置,
 						fromStyle : {
 							left : {Number}
 						},
@@ -192,8 +205,8 @@ $.fn.parallax = function(options) {
 						easing : 'easeInOutElastic' // イージングの指定
 					},
 					{
-						startY : 1300 //動きのスタートのスクロール位置,
-						endY : 1500 //動きの終わりスクロール位置,
+						start : 1300 //動きのスタートのスクロール位置,
+						end : 1500 //動きの終わりスクロール位置,
 						fromStyle : {
 							opacity : 1
 						},
@@ -204,7 +217,7 @@ $.fn.parallax = function(options) {
 					}],
 					motion2 : [{
 						//モーションいくつでも指定可能
-						//（ただしmotion1で指定している一番大きいendYより、motion2のstartYは大きくなるようにしてください。）
+						//（ただしmotion1で指定している一番大きいendより、motion2のstartは大きくなるようにしてください。）
 						....
 					}]
 				};
@@ -214,7 +227,7 @@ $.fn.parallax = function(options) {
 		 *	@method parallax.type1
 		 */
 		type1 : function() {
-			var scrollY = info().scrollY;
+			var scrollNum = info().scrollNum;
 	
 			// パララックス するコンテンツ分 実行
 			for(obj in parallaxObj){
@@ -224,15 +237,15 @@ $.fn.parallax = function(options) {
 	
 				// モーションしたいCSS指定分 実行
 				for(var i = 0; i < motions.length ;i++) {
-					var startY = motions[i].startY,
-						endY = motions[i].endY,
-						startEndY = endY - startY,
+					var start = motions[i].start,
+						end = motions[i].end,
+						startEndY = end - start,
 						ease = motions[i].easing,
 	
 						// スタート位置からエンド位置までのスクロール距離の割合
-						scrollPercent = (startY <  scrollY && scrollY < endY) ? (scrollY - startY) / startEndY :
-						(startY <  scrollY) ? 1 :
-						(scrollY < endY) ? 0 : '';
+						scrollPercent = (start <  scrollNum && scrollNum < end) ? (scrollNum - start) / startEndY :
+						(start <  scrollNum) ? 1 :
+						(scrollNum < end) ? 0 : '';
 			
 					for(style in motions[i].fromStyle){
 					
@@ -258,7 +271,7 @@ $.fn.parallax = function(options) {
 							var value = {
 									from : fromStyle[style].split(' '),
 									to : toStyle[style].split(' ')
-								}
+								};
 
 							// 連想配列に入った二つの値を検査、例）background-position: center 100px;
 							// 数値以外（centerとかtop）を判断してpxを外し数値に変換
@@ -268,8 +281,8 @@ $.fn.parallax = function(options) {
 									ftValue = isNaN(ftValue) ? ftValue : Number(ftValue);
 									
 									value[ft][i] = ftValue;
-								}
-							}
+								};
+							};
 
 							// 二つの値のそれぞれのfrom toの移動距離を配列に
 							var abs =  [
@@ -282,7 +295,7 @@ $.fn.parallax = function(options) {
 							for(var i = 0;i < value.from.length; i++) {
 								var fixAbs = value.from[i] < value.to[i] ? abs[i] : -abs[i];
 								fixValue[i] = isNaN(value.from[i]) ? value.from[i] : easing[ease](scrollPercent, value.from[i], fixAbs, 1) + 'px';
-							}
+							};
 								
 							parallaxObj[obj].obj.css(
 								style,
@@ -295,7 +308,7 @@ $.fn.parallax = function(options) {
 		},
 		
 		/**
-		 *	（scrollY）スクロール量 / speed
+		 *	（scrollNum）スクロール量 / speed
 		 *	
 		 *	スクロール方向と反対に動かしたい場合はspeedをマイナスにします。
 		 *
@@ -310,7 +323,7 @@ $.fn.parallax = function(options) {
 		 *	@method parallax.type2
 		 */
 		type2 : function() {
-			var value = -parseInt(-scrollY / speed + fixPosition / speed) + adjustment,
+			var value = -parseInt(-info().scrollNum / speed + fixPosition / speed) + adjustment,
 			value = minValue > value ? minValue : maxValue < value ? maxValue : value;
 			
 			var value = (style == 'background-position') ?  value + 'px ' + value + 'px' : 
@@ -335,26 +348,25 @@ $.fn.parallax = function(options) {
 		 *	@method parallax.type3
 		 */
 		type3 : function() {
-			var fixLine = fixPosition > 0 ? fixPosition : parallaxObj.offset().top;
+			var fixLine = fixPosition > 0 ? fixPosition : parallaxObj.offset()[directionStr];
 			if(info().contentStartLine >= fixLine) {
 				if(!(line)) {
 					parallaxObj.queue([]).stop();
 					line = true;
 					if(startAnimation !== '') {
 						startAnimation({target:parallaxObj,isLine:line});
-					}
-				}
-			}
-			else {
+					};
+				};
+			} else {
 				if(line) {
 					parallaxObj.queue([]).stop();
 					line = false;
 
 					if(endAnimation !== '') {
 						endAnimation({target:parallaxObj,isLine:line});
-					}
-				}
-			}
+					};
+				};
+			};
 		}
 	}
 	
