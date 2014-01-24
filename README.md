@@ -130,8 +130,8 @@ typeに合わせたparallaxの指定
 
 
 ### type3 ###
-//基準のポジション（$(hoge).offset().top）のタグ（$(hoge)）を指定
-//もしくはstartAnimation、endAnimationの引数targetに指定したいタグ
+基準のポジション（$(hoge).offset().top）のタグ（$(hoge)）を指定
+もしくはstartAnimation、endAnimationの引数targetに指定したいタグ
 
 	例）
 	$(window).parallax({
