@@ -29,6 +29,7 @@
  *		* startAnimation : ''  contentStartLineを上から下に向かって通過した時に実行する関数（アニメーション）
  *		* endAnimation : '' contentStartLineを下から上に向かって通過した時に実行する関数（アニメーション）
  *		* fixPosition : contentStartLineのラインがこの位置に来た時点で関数を実行、もし指定がない場合はparallaxにしていしたoffsetの情報がラインになる
+ *		* debug : boolean デバック用のborderを表示
  *
  * @class parallax
  *
@@ -58,7 +59,9 @@ $.fn.parallax = function(options) {
 			// type3の設定
 			contentStartLinePercent : 50,
 			startAnimation : '',
-			endAnimation : ''
+			endAnimation : '',
+			
+			debug: false
 		},options),
 
 		parallaxObj = c.parallax,
@@ -77,6 +80,8 @@ $.fn.parallax = function(options) {
 		contentStartLinePercent = c.contentStartLinePercent,
 		startAnimation = c.startAnimation,
 		endAnimation = c.endAnimation,
+		
+		debug = c.debug,
 		
 		line = false,
 		
@@ -368,13 +373,38 @@ $.fn.parallax = function(options) {
 				};
 			};
 		}
-	}
+	};
+
+
+	/**
+	 *	デバック用border表示（type3の開始位置を確認しやすくする）
+	 *	
+	 *	@method debugView
+	 */
+	function debugView() {
+		if(debug) {
+			$('.parallaxDebug').css({
+				top: info().contentStartLine
+			});
+		};
+	};
 	
 	/*------------------------------------------------------------------------------------------
 		初回実行
 	------------------------------------------------------------------------------------------*/
 	info();
 	parallax[type]();
+	
+	//デバック用
+	if(debug) {
+		$debug = $('body').append('<hr class="parallaxDebug">').find('.parallaxDebug').css({
+			position: 'absolute',
+			width: '100%',
+			borderBottom: '2px solid red',
+			zIndex: 99999
+		});
+		debugView();
+	};
 
 	/*------------------------------------------------------------------------------------------
 		ウィンドウズサイズを変更したとき
@@ -382,6 +412,7 @@ $.fn.parallax = function(options) {
 	$(window).bind("resize",function(){
 		info();
 		parallax[type]();
+		debugView();
 	});
 
 	/*------------------------------------------------------------------------------------------
@@ -390,6 +421,7 @@ $.fn.parallax = function(options) {
 	$content.scroll(function(){
 		info();
 		parallax[type]();
+		debugView();
 	});
 }
 }(jQuery,this));
