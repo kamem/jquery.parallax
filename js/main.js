@@ -15,7 +15,7 @@ $(function(){
 	for(var i = 0;i < $navContent.length;i++) {
 		$(window).parallax({
 			parallax : $navContent.eq(i),
-			type : 'type3',
+			type : 'timing',
 			startAnimation: function(e){nav(e);},
 			endAnimation: function(e){nav(e);},
 			contentStartLinePercent: 50
@@ -44,7 +44,7 @@ $(function(){
 		//プラグインを使った動きの設定
 		$(window).parallax({
 			parallax : $(this),
-			type : 'type2',
+			type : 'scrollSpeed',
 			style : 'top',
 			fixPosition : 0,
 			speed : randomSpeed,
@@ -59,7 +59,7 @@ $(function(){
 	//背景のパララックス効果
 	$(window).parallax({
 		parallax : $('#first'),
-		type : 'type2',
+		type : 'timing',
 		style : 'background-positionTop',
 		fixPosition : $('#first').offset().top,
 		speed : -3,
@@ -76,7 +76,7 @@ $(function(){
 	//テキスト表示されるときの処理
 	$(window).parallax({
 		parallax : $('#first'),
-		type : 'type3',
+		type : 'timing',
 		fixPosition : $('#first').offset().top,
 		startAnimation: function(e){showAnimate(e);},
 		endAnimation: function(e){hideAnimate(e);},
@@ -86,7 +86,7 @@ $(function(){
 	//テキストの消えるときの処理
 	$(window).parallax({
 		parallax : $('#first'),
-		type : 'type3',
+		type : 'timing',
 		fixPosition : $('#first').offset().top + $('#first').height(),
 		startAnimation: function(e){hide2Animate(e);},
 		endAnimation: function(e){showAnimate(e);},

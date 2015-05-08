@@ -1,0 +1,9 @@
+#file ignore
+Thumbs.db
+.Ds_Store
+
+#directory ignore
+.sass-cache/
+.idea/
+node_modules/
+vendor/

@@ -31,7 +31,7 @@ $(function(){
 		$(window).parallax({
 			parallax : $('.star' + (i+1)),
 			direction : 'x',
-			type : 'type2',
+			type : 'scrollSpeed',
 			style : 'left',
 			fixPosition : $('#first').offset().left,
 			speed : -randomSpeed,
@@ -43,7 +43,7 @@ $(function(){
 		$(window).parallax({
 			parallax : $('.star' + (i+1)),
 			direction : 'x',
-			type : 'type2',
+			type : 'scrollSpeed',
 			style : 'top',
 			fixPosition : $('#first').offset().left,
 			speed : randomSpeed,
@@ -84,7 +84,7 @@ $(function(){
 		$(window).parallax({
 			parallax : $navContent.eq(i),
 			direction : 'x',
-			type : 'type3',
+			type : 'timing',
 			startAnimation: function(e){nav(e);},
 			endAnimation: function(e){nav(e);},
 			contentStartLinePercent: 50

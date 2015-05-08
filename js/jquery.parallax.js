@@ -11,12 +11,12 @@
  *
  *	* direction : y or x スクロールの方向を指定
  *	
- *	* type : 'type1' parallaxのタイプの設定
- *		* type1 - startのendの位置までの距離をfromStyleからtoStyleまでのstyleでeasingにそって実行する。
- *		* type2 - styleをスクロール量 / speedででコンテンツを動かす。
- *		* type3 - 指定した位置を通過したときに関数を実行する。
+ *	* type : 'scrollFit' parallaxのタイプの設定
+ *		* scrollFit - startのendの位置までの距離をfromStyleからtoStyleまでのstyleでeasingにそって実行する。
+ *		* scrollSpeed - styleをスクロール量 / speedででコンテンツを動かす。
+ *		* timing - 指定した位置を通過したときに関数を実行する。
  *
- *	* type2
+ *	* scrollSpeed
  *		* style :  どのCSSに対して処理を行うか
  *		* fixPosition :  スクロール位置がどの位置にフィックスした時に画像の位置を意図した位置に持ってきたいか
  *		* speed  : スクロール量に合わせてどのぐらいの量で動かしたいか(Y / speed)
@@ -24,7 +24,7 @@
  *		* maxValue : 最高の値はどのぐらいか
  *		* adjustment : 背景などの位置をフィックスさせたい位置は0からどれぐらいずれているか
  *
- *	* type3
+ *	* timing
  *		* contentStartLinePercent : コンテンツが動き始めるラインを、windowの高さの割合で指定（起点は上から）真ん中の場合は50
  *		* startAnimation : ''  contentStartLineを上から下に向かって通過した時に実行する関数（アニメーション）
  *		* endAnimation : '' contentStartLineを下から上に向かって通過した時に実行する関数（アニメーション）
@@ -45,9 +45,9 @@ $.fn.parallax = function(options) {
 			direction : 'y',
 			
 			//parallax Type
-			type : 'type1',
+			type : 'scrollFit',
 
-			// type2の設定
+			// scrollSpeedの設定
 			style : 'top',
 			fixPosition : 0,
 			speed : 1,
@@ -55,7 +55,7 @@ $.fn.parallax = function(options) {
 			maxValue : 999999999999,
 			adjustment : 0,
 			
-			// type3の設定
+			// timingの設定
 			contentStartLinePercent : 50,
 			startAnimation : '',
 			endAnimation : ''
@@ -224,9 +224,9 @@ $.fn.parallax = function(options) {
 			};
 		};
 		 *	
-		 *	@method parallax.type1
+		 *	@method parallax.scrollFit
 		 */
-		type1 : function() {
+		scrollFit : function() {
 			var scrollNum = info().scrollNum;
 	
 			// パララックス するコンテンツ分 実行
@@ -320,9 +320,9 @@ $.fn.parallax = function(options) {
 		 *	* background-positionTop - background-position : 'center' {Number}
 		 *	* background-positionLeft - background-position : {Number} 'center'
 		 *
-		 *	@method parallax.type2
+		 *	@method parallax.scrollSpeed
 		 */
-		type2 : function() {
+		scrollSpeed : function() {
 			var value = -parseInt(-info().scrollNum / speed + fixPosition / speed) + adjustment,
 			value = minValue > value ? minValue : maxValue < value ? maxValue : value;
 			
@@ -345,9 +345,9 @@ $.fn.parallax = function(options) {
 		 *	* startAnimation(通過のターゲットとなったコンテンツ,そのラインを超えてるか超えてないかのフラグ);
 		 *	* endAnimation(通過のターゲットとなったコンテンツ,そのラインを超えてるか超えてないかのフラグ);
 		 *
-		 *	@method parallax.type3
+		 *	@method parallax.timing
 		 */
-		type3 : function() {
+		timing : function() {
 			var fixLine = fixPosition > 0 ? fixPosition : parallaxObj.offset()[directionStr];
 			if(info().contentStartLine >= fixLine) {
 				if(!(line)) {
