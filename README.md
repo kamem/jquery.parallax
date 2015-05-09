@@ -24,12 +24,12 @@ parallaxを実装するためのjQuery Plugin
 
  *	direction : y or x スクロールの方向を指定
  
- * type : 'type1' parallaxのタイプの設定
-	* type1 - startのendの位置までの距離をfromStyleからtoStyleまでのstyleでeasingにそって実行する。
-	* type2 - styleをスクロール量 / speedででコンテンツを動かす。
-	* type3 - 指定した位置を通過したときに関数を実行する。
+ * type : 'scrollFit' parallaxのタイプの設定
+	* scrollFit - startのendの位置までの距離をfromStyleからtoStyleまでのstyleでeasingにそって実行する。
+	* scrollSpeed - styleをスクロール量 / speedででコンテンツを動かす。
+	* timing - 指定した位置を通過したときに関数を実行する。
  
- * type2
+ * scrollSpeed
 	* style :  どのCSSに対して処理を行うか
 	* fixPosition :  スクロール位置がどの位置にフィックスした時に画像の位置を意図した位置に持ってきたいか
 	* speed  : スクロール量に合わせてどのぐらいの量で動かしたいか(Y / speed)
@@ -37,7 +37,7 @@ parallaxを実装するためのjQuery Plugin
 	* maxValue : 最高の値はどのぐらいか
 	* adjustment : 背景などの位置をフィックスさせたい位置は0からどれぐらいずれているか
 
- * type3
+ * timing
 	* contentStartLinePercent : コンテンツが動き始めるラインを、windowの高さの割合で指定（起点は上から）真ん中の場合は50
 	* startAnimation : ''  contentStartLineを上から下に向かって通過した時に実行する関数（アニメーション）
 	* endAnimation : '' contentStartLineを下から上に向かって通過した時に実行する関数（アニメーション）
@@ -50,9 +50,9 @@ parallaxを実装するためのjQuery Plugin
 	direction : 'y',
 
 	// parallax Type
-	type : 'type1',
+	type : 'scrollFit',
 
-	//type2
+	//scrollSpeed
 	style : 'top',
 	fixPosition : 0,
 	speed : 1,
@@ -60,7 +60,7 @@ parallaxを実装するためのjQuery Plugin
 	maxValue : 999999999999,
 	adjustment : 0,
 	
-	// type3
+	// timing
 	contentStartLinePercent : 50,
 	startAnimation : '',
 	endAnimation : ''
@@ -69,7 +69,7 @@ parallaxを実装するためのjQuery Plugin
 typeに合わせたparallaxの指定
 ------
 
-### type1 ###
+### scrollFit ###
 下記のような連想配列を渡す
 
 	例）
@@ -104,8 +104,8 @@ typeに合わせたparallaxの指定
 					//（ただしmotion1で指定している一番大きいendより、motion2のstartは大きくなるようにしてください。）
 					....
 				}]
-			};
-		};
+			}
+		}
 	};
 
 
@@ -113,15 +113,15 @@ typeに合わせたparallaxの指定
 		parallax : parallaxObj
 	});
 
-### type2 ###
+### scrollSpeed ###
 動かしたいコンテンツを直接指定
 
 	例）
 	$(window).parallax({
-		parallax : $('#type2'),
-		type : 'type2',
+		parallax : $('#scrollSpeed'),
+		type : 'scrollSpeed',
 		style : 'background-positionTop',
-		fixPosition : $('#type2').offset().top,
+		fixPosition : $('#scrollSpeed').offset().top,
 		speed : -2,
 		maxPosition : 0,
 		adjustment : -200,
@@ -129,15 +129,15 @@ typeに合わせたparallaxの指定
 	});
 
 
-### type3 ###
+### timing ###
 基準のポジション（$(hoge).offset().top）のタグ（$(hoge)）を指定
 もしくはstartAnimation、endAnimationの引数targetに指定したいタグ
 
 	例）
 	$(window).parallax({
-		parallax : $('#type3'),
-		type : 'type3',
-		fixPosition : $('#type3').offset().top, //もしもfixPositionがある場合はparallaxで指定したタグのoffset().topの値よりもfixPositionが優先されます。
+		parallax : $('#timing'),
+		type : 'timing',
+		fixPosition : $('#timing').offset().top, //もしもfixPositionがある場合はparallaxで指定したタグのoffset().topの値よりもfixPositionが優先されます。
 		startAnimation: function(e){showAnimate(e);}, //eにはparallaxで指定したタグがe.targetで取れます。
 		endAnimation: function(e){hideAnimate(e);},
 		contentStartLinePercent: 30

@@ -66,7 +66,7 @@ $(function(){
 			toStyle : {
 				opacity : 0
 			},
-			easing : 'liner'
+			easing : 'linear'
 		}];
 		
 		$(window).parallax({

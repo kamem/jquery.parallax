@@ -10,7 +10,7 @@
  *	Date: 2014.01.25
  *
  *	* direction : y or x スクロールの方向を指定
- *	
+ *
  *	* type : 'scrollFit' parallaxのタイプの設定
  *		* scrollFit - startのendの位置までの距離をfromStyleからtoStyleまでのstyleでeasingにそって実行する。
  *		* scrollSpeed - styleをスクロール量 / speedででコンテンツを動かす。
@@ -43,7 +43,7 @@ $.fn.parallax = function(options) {
 			parallax : {},
 			
 			direction : 'y',
-			
+
 			//parallax Type
 			type : 'scrollFit',
 
@@ -82,7 +82,7 @@ $.fn.parallax = function(options) {
 		
 		// イージング
 		easing = {
-			liner : function(t,b,c,d){return b+c*t},
+			linear : function(t,b,c,d){return b+c*t},
 			easeInQuad:function(i,b,c,d){return c*(i/=d)*i+b;},
 			easeOutQuad:function(i,b,c,d){return -c*(i/=d)*(i-2)+b;},
 			easeInOutQuad:function(i,b,c,d){if((i/=d/2)<1){return c/2*i*i+b;}return -c/2*((--i)*(i-2)-1)+b;},
@@ -187,42 +187,6 @@ $.fn.parallax = function(options) {
 	var parallax = {
 		/**
 		 *	スクロール位置、距離を指定してその位置を移動する
-		 *	
-		例）
-		parallaxObj = {
-			name : {
-				obj : $('#header'), // 動かすオブジェクト
-				tagMotions : {
-					motion1 : [{
-						start : 1000 // 動きのスタートのスクロール位置,
-						end : 1500 // 動きの終わりスクロール位置,
-						fromStyle : {
-							left : {Number}
-						},
-						toStyle : {
-							left : {Number}
-						},
-						easing : 'easeInOutElastic' // イージングの指定
-					},
-					{
-						start : 1300 //動きのスタートのスクロール位置,
-						end : 1500 //動きの終わりスクロール位置,
-						fromStyle : {
-							opacity : 1
-						},
-						toStyle : {
-							opacity : 0.5
-						},
-						easing : 'liner' // イージングの指定
-					}],
-					motion2 : [{
-						//モーションいくつでも指定可能
-						//（ただしmotion1で指定している一番大きいendより、motion2のstartは大きくなるようにしてください。）
-						....
-					}]
-				};
-			};
-		};
 		 *	
 		 *	@method parallax.scrollFit
 		 */
@@ -355,8 +319,8 @@ $.fn.parallax = function(options) {
 					line = true;
 					if(startAnimation !== '') {
 						startAnimation({target:parallaxObj,isLine:line});
-					};
-				};
+					}
+				}
 			} else {
 				if(line) {
 					parallaxObj.queue([]).stop();
@@ -364,32 +328,24 @@ $.fn.parallax = function(options) {
 
 					if(endAnimation !== '') {
 						endAnimation({target:parallaxObj,isLine:line});
-					};
-				};
-			};
+					}
+				}
+			}
 		}
-	}
-	
-	/*------------------------------------------------------------------------------------------
-		初回実行
-	------------------------------------------------------------------------------------------*/
+	};
+
+	/*---*/
 	info();
 	parallax[type]();
 
-	/*------------------------------------------------------------------------------------------
-		ウィンドウズサイズを変更したとき
-	------------------------------------------------------------------------------------------*/
 	$(window).bind("resize",function(){
 		info();
 		parallax[type]();
 	});
 
-	/*------------------------------------------------------------------------------------------
-		スクロールしたとき
-	------------------------------------------------------------------------------------------*/
 	$content.scroll(function(){
 		info();
 		parallax[type]();
 	});
 }
-}(jQuery,this));
+}(jQuery, this));
